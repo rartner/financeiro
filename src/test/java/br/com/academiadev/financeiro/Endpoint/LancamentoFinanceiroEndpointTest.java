@@ -71,6 +71,7 @@ public class LancamentoFinanceiroEndpointTest {
         usuario.setNome("Augusto da Silva");
         usuario.setSenha("123456");
         usuario.setEmail("docsbruno@gmail.com");
+        
         return usuario;
     }
 
