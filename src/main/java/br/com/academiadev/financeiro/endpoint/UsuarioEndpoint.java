@@ -10,20 +10,30 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping
+@RequestMapping("/usuario")
 public class UsuarioEndpoint {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/usuario")
+    @PostMapping("/")
     public void save(@RequestBody Usuario usuario) {
         usuarioRepository.save(usuario);
     }
 
-    @GetMapping("/usuario")
+    @GetMapping("/")
     public List<Usuario> buscarUsuarios() {
         return toList(usuarioRepository.findAll());
+    }
+
+    @DeleteMapping("/{id}")
+    public void excluir(@PathVariable("id") Long id) {
+        usuarioRepository.deleteById(id);
+    }
+
+    @GetMapping("/{id}")
+    public Usuario buscar(@PathVariable("id") Long id) {
+        return usuarioRepository.findById(id).orElse(new Usuario());
     }
 
     public <E> List<E> toList(Iterable<E> iterable) {
